@@ -21,10 +21,9 @@ public class spawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        
+        // finding the positoion of the player
         Vector3 DistanceTrigger = transform.position - SpawnerTrigger.transform.position;
         
-        timer += Time.deltaTime;
 
         if (DistanceTrigger.magnitude < 4)
         {
