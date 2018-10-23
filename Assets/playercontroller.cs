@@ -8,6 +8,8 @@ public class playercontroller : MonoBehaviour
     [Range(1.0f,150.0f)]
     public float Speed = 10.0f;
 
+    float TurnSpeed = 40;
+
     public GameObject prefabBullet;     
    
 
@@ -38,6 +40,18 @@ public class playercontroller : MonoBehaviour
             transform.Translate(Vector3.right * Speed * Time.deltaTime);
         }
 
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            Quaternion rot = Quaternion.AngleAxis(-TurnSpeed * Time.deltaTime, Vector3.up);
+            transform.rotation *= rot;
+        }
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            Quaternion rot = Quaternion.AngleAxis(TurnSpeed * Time.deltaTime, Vector3.up);
+            transform.rotation *= rot;
+        }
+
+            
         // shooting the bullet when the space bar is pressed
         if(Input.GetKeyDown(KeyCode.Space))
         {

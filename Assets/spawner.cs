@@ -6,6 +6,7 @@ public class spawner : MonoBehaviour
 {
     public float TriggerTime = 5;
     float timer = 0;
+    bool IsInRange = false;
 
     public GameObject zobiePreFab;
     private GameObject SpawnerTrigger;
@@ -25,20 +26,27 @@ public class spawner : MonoBehaviour
         
         timer += Time.deltaTime;
 
-        if (timer >= TriggerTime)
+        if (DistanceTrigger.magnitude < 4)
         {
-            Debug.Log("timer maxed");
-            timer = 0;
-
-            if (DistanceTrigger.magnitude < 4)
+            if(IsInRange == false)
             {
-                
-
-                GameObject gameObject = Instantiate(zobiePreFab, transform.position, transform.rotation);
+                IsInRange = true;
+                timer = 0;
             }
+            timer += Time.deltaTime;
 
+            if(timer >= TriggerTime)
+            {
+                GameObject gameObject = Instantiate(zobiePreFab, transform.position, transform.rotation);
+                timer = 0;
+            }
+           
+        }
+        else
+        {
+            IsInRange = false;
+            timer = 0;
         }
 
-       
 	}
 }
